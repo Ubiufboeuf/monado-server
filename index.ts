@@ -7,6 +7,7 @@ import { resolve } from 'node:path'
 import { streamsRouter } from './src/routes/streamsRouter'
 import { videoRouter } from './src/routes/videoRouter'
 import { videosRouter } from './src/routes/videosRouter'
+import { watchPublicFolder } from './src/services/watchFileSystem'
 
 const app = express()
 const port = process.env.PORT ?? DEFAULT_PORT
@@ -33,3 +34,5 @@ app.use('/videos', videosRouter)
 app.get('/', (req, res) => {
   res.sendFile(resolve('src/defaultGet.html'))
 })
+
+watchPublicFolder()
