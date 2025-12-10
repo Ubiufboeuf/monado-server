@@ -3,6 +3,7 @@ import { DEFAULT_PORT } from './src/constants'
 import { createServer } from 'node:https'
 import { createServerOptions } from './src/serverConfig/createOptions'
 import { corsMiddleware } from './src/middlewares/cors'
+import { resolve } from 'node:path'
 
 const app = express()
 const port = process.env.PORT ?? DEFAULT_PORT
@@ -23,5 +24,5 @@ const acceptedOrigins = [
 app.use(corsMiddleware({ acceptedOrigins }))
 
 app.get('/', (req, res) => {
-  res.send('Chrome, no des problemas... porfa')
+  res.sendFile(resolve('src/defaultGet.html'))
 })
