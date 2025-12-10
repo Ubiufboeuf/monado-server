@@ -1,0 +1,6 @@
+{
+  "conventionalCommits.scopes": [
+    "video",
+    "commit-scope"
+  ]
+}
