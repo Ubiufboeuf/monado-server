@@ -8,3 +8,7 @@ export const ROUTER_ERRORS = {
 export const VIDEO_ERRORS = {
   NOT_FOUND: 'VIDEO_ERROR_NOT_FOUND'
 }
+
+export const REQUEST_EXAMPLES = {
+  VIDEO: '/video/[ID]'
+}
