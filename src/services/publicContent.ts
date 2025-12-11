@@ -4,8 +4,6 @@ import { createThrottleCallback } from '../lib/timeUtils'
 import { serverContext } from '../context'
 
 export async function updatePublicContent () {
-  console.clear()
-  
   // Crear callback para la lectura de public/ esperando 400ms para evitar problemas de caché del fs
   const throttleReadPublic = await createThrottleCallback(() => readdir(resolve('public')) ?? [], { initialTimeout: 400 })
   
