@@ -1,7 +1,10 @@
-import { AsyncLocalStorage } from 'node:async_hooks'
+// import { AsyncLocalStorage } from 'node:async_hooks'
 
 interface ServerContext {
-  publicContent: Set<string>
+  streamsFolder: Set<string>
 }
 
-export const serverContext = new AsyncLocalStorage<ServerContext>()
+// export const serverContext = new AsyncLocalStorage<ServerContext>({ defaultValue: DefaultServerContext })
+export const serverContext: ServerContext = {
+  streamsFolder: new Set()
+}
