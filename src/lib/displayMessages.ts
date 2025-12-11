@@ -1,4 +1,4 @@
-import type { UserFacingMessageKey, UserFacingMessages } from '../messageTypes'
+import type { UserFacingMessageKey, UserFacingMessages } from '../types/messageTypes'
 
 const USER_FACING_MESSAGES: UserFacingMessages = {
   ROUTER_ERROR_MISSING_VIDEO_ID: 'Falta especificar el ID del video',

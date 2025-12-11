@@ -1,4 +1,4 @@
-import type { Video } from '../videoTypes'
+import type { Video } from '../types/videoTypes'
 
 const videos = new Map<string, Video>()
 
