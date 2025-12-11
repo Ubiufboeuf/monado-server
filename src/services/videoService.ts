@@ -1,3 +1,9 @@
+import type { Video } from '../videoTypes'
+
+const videos = new Map<string, Video>()
+
 export function getVideoById (id: string) {
-  return null
+  if (!videos.has(id)) return
+
+  return videos.get(id)
 }
