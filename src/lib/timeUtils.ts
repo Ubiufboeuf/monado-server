@@ -7,6 +7,9 @@ interface ThrottleOptions {
   timeout?: number
 }
 
+// Esta función existe porque sleep() existe en bun, no en node
+export const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms))
+
 export function debounce<T extends Function> (fn: (this: T, ...args: any[]) => any, timeout: number): any {
   let timeoutId: NodeJS.Timeout | null = null
 
