@@ -8,9 +8,9 @@ export async function watchPublicFolder () {
     encoding: 'utf8'
   })
 
-  for await (const { eventType } of iterator) {
+  for await (const { eventType, filename } of iterator) {
     if (eventType === 'rename') {
-      updatePublicContent()
+      updatePublicContent(filename)
     }
   }
 }

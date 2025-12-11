@@ -1,40 +1,83 @@
 import { readdir, stat } from 'node:fs/promises'
-import { resolve } from 'node:path'
-import { createThrottleCallback } from '../lib/timeUtils'
+import { sleep } from '../lib/timeUtils'
 import { serverContext } from '../context'
+import { FS_ROUTES } from '../lib/constants'
+import { resolve } from 'node:path'
 
-export async function updatePublicContent () {
-  // Crear callback para la lectura de public/ esperando 400ms para evitar problemas de caché del fs
-  const throttleReadPublic = await createThrottleCallback(() => readdir(resolve('public')) ?? [], { initialTimeout: 400 })
+export async function updatePublicContent (filename: string | null) {
+  console.clear()
   
-  // Ejecutar callback
-  const publicFolder = await throttleReadPublic()
+  if (!filename) {
+    console.error('El filename del evento es null. No se puede actualizar el contenido de public/')
+    return
+  }
 
-  for (const name of publicFolder) {
-    // Por cada elemento, intentar conseguir su estado
-    let stats
+  const eventFolder = filename.split('/')[0] ?? ''
+  
+  const directoriesToUpdate = [
+    FS_ROUTES.STREAMS.toString(),
+    FS_ROUTES.ASSETS.toString(),
+    FS_ROUTES.INFO.toString()
+  ]
+
+  const filenameInDirectoryToUpdate = directoriesToUpdate
+    .some((d) => d.includes(eventFolder))
+  
+  if (!filenameInDirectoryToUpdate) return
+  
+  // Comprobar si existe la carpeta public/
+  let stats
+  try {
+    stats = await stat(FS_ROUTES.PUBLIC.fullPath)
+  } catch (err) {
+    console.error('Error leyendo public/:', err)
+  }
+
+  if (!stats || !stats.isDirectory()) return
+
+  // Esperar 1000s para evitar problemas de la caché del fs
+  await sleep(1000)
+  
+  for (const folder of directoriesToUpdate) {
+    if (!folder.includes(eventFolder)) continue
+    
+    const fullPath = resolve(folder)
+    console.log(`- folder [${folder}] - :`, fullPath)
+
+    let folderContent
+    let hasError = false
     try {
-      stats = await stat(resolve(`public/${name}`))
-    } catch (err) {
-      console.error(`Error consiguiendo el estado de public/${name} :`, err)
+      console.log('readdir')
+      folderContent = await readdir(fullPath)
+    } catch {
+      hasError = true
+      console.error(`Error leyendo la carpeta ${fullPath}`)
     }
 
-    if (!stats?.isDirectory()) continue
-    
-    // Guardar nombre de la carpeta
-    saveItemInPublicFolder(name)
+    if (!folderContent || !folderContent.length) {
+      if (!hasError) console.log(`([${folder}] is empty)`)
+      continue
+    }
+
+    for (const item of folderContent) {
+      saveItemInPublicFolder(eventFolder, item)
+    }
   }
 }
 
-function saveItemInPublicFolder (name: string) {
-  let context
-  try {
-    context = serverContext.getStore()
-  } catch (err) {
-    console.error('Error obteniendo el contexto del servidor:', err)
-  }
+function saveItemInPublicFolder (folder: string, item: string) {
+  // let context
+  // try {
+  //   context = serverContext.getStore()
+  // } catch (err) {
+  //   console.error('Error obteniendo el contexto del servidor:', err)
+  // }
 
-  if (!context) return
+  // if (!context) {
+  //   console.error('no context:', context)
+  //   return
+  // }
 
-  context.publicContent.add(name)
+  // context.streamsFolder.add(item)
+  serverContext.streamsFolder.add(item)
 }
