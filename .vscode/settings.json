@@ -3,6 +3,7 @@
     "video",
     "commit-scope",
     "core",
-    "utils"
+    "utils",
+    "file-system"
   ]
 }
