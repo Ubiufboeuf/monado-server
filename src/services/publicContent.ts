@@ -86,5 +86,6 @@ function saveItemInPublicFolder (folder: string, item: string) {
   // }
 
   // context.streamsFolder.add(item)
+  console.log(`[${FS_ROUTES.PUBLIC}/${folder}]: ${item}`)
   serverContext.streamsFolder.add(item)
 }
