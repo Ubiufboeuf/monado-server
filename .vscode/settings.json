@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "video",
     "commit-scope",
-    "core"
+    "core",
+    "utils"
   ]
 }
