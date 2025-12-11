@@ -4,6 +4,13 @@ import { serverContext } from '../context'
 import { FS_ROUTES } from '../lib/constants'
 import { resolve } from 'node:path'
 
+/* 
+  Por la manera en la que está implementado esto, por más que sea una escucha recursiva,
+  si los cambios están por dentro de las carpetas que se escuchan, no se actualizará nada.
+  Esto es por la comprobación de FS_ROUTE y el cambio para evitar cambios de más,
+  y aunque seguramente se pueda mejorar, no quiero tocar esto de nuevo en un rato.
+*/
+
 export async function updatePublicContent (filename: string | null) {
   console.clear()
   
