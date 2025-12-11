@@ -1,3 +1,5 @@
+import { createFsRoutes } from './fsUtils'
+
 export const DEFAULT_PORT = 4000
 
 export const ROUTER_ERRORS = {
@@ -12,3 +14,7 @@ export const VIDEO_ERRORS = {
 export const REQUEST_EXAMPLES = {
   VIDEO: '/video/[ID]'
 }
+
+export const FS_ROUTES = createFsRoutes({
+  public: 'public'
+})
