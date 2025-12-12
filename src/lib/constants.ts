@@ -15,6 +15,9 @@ export const FS_ROUTES = createFsRoutes({
   public: 'public'
 })
 
+// ROUTES son las constantes con los valores para crear los endpoints,
+// pero no son los endpoints.
+// Ej, ROUTES.VIDEO.ID no es un endpoint, es una ruta con la que se crea el endpoint /video/:id
 export const ROUTES = {
   BASE: '/',
   STREAMS: '/streams',
