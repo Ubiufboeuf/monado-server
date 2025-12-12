@@ -5,6 +5,7 @@
     "core",
     "utils",
     "file-system",
-    "route"
+    "route",
+    "user-facing"
   ]
 }
