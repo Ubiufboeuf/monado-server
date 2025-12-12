@@ -32,7 +32,7 @@ export const ROUTES = {
 }
 
 export const REQUEST_EXAMPLES = {
-  VIDEO: `${ROUTES.VIDEO}/[ID]`
+  VIDEO: `${ROUTES.VIDEO.BASE}${ROUTES.VIDEO.THUMBNAIL}/[ID]`
 }
 
 export const USER_FACING_MESSAGES: UserFacingMessages = {
