@@ -4,6 +4,7 @@
     "commit-scope",
     "core",
     "utils",
-    "file-system"
+    "file-system",
+    "route"
   ]
 }
