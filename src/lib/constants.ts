@@ -16,6 +16,7 @@ export const FS_ROUTES = createFsRoutes({
 })
 
 const ROUTES = {
+  STREAMS: '/streams',
   VIDEOS: '/videos',
   VIDEO: '/video',
   ASSETS: '/assets',
