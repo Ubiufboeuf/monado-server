@@ -4,22 +4,13 @@ import { serverContext } from '../context'
 import { FS_ROUTES } from '../lib/constants'
 import { resolve } from 'node:path'
 
-/* 
-  Por la manera en la que está implementado esto, por más que sea una escucha recursiva,
-  si los cambios están por dentro de las carpetas que se escuchan, no se actualizará nada.
-  Esto es por la comprobación de FS_ROUTE y el cambio para evitar cambios de más,
-  y aunque seguramente se pueda mejorar, no quiero tocar esto de nuevo en un rato.
-*/
-
 export async function updatePublicContent (filename: string | null) {
-  console.clear()
-  
-  if (!filename) {
-    console.error('El filename del evento es null. No se puede actualizar el contenido de public/')
-    return
-  }
+  // console.clear()
+  console.log('\n- - - UpdatePublicContent - - -')
 
-  const eventFolder = filename.split('/')[0] ?? ''
+  const eventFolder = filename
+    ? `${FS_ROUTES.PUBLIC}/${filename.split('/')[0]}`
+    : null
   
   const directoriesToUpdate = [
     FS_ROUTES.STREAMS.toString(),
@@ -27,10 +18,14 @@ export async function updatePublicContent (filename: string | null) {
     FS_ROUTES.INFO.toString()
   ]
 
-  const filenameInDirectoryToUpdate = directoriesToUpdate
-    .some((d) => d.includes(eventFolder))
+  // Esto era parte de lo necesario para hacerlo granular,
+  // pero prácticamente todo el intento de hacer esto granular estaba mal implementado
+  // const filenameInDirectoriesToUpdate = eventFolder
+  //   ? directoriesToUpdate
+  //     .some((d) => d.includes(eventFolder))
+  //   : null
   
-  if (!filenameInDirectoryToUpdate) return
+  // if (!filenameInDirectoriesToUpdate) return
   
   // Comprobar si existe la carpeta public/
   let stats
@@ -46,15 +41,15 @@ export async function updatePublicContent (filename: string | null) {
   await sleep(1000)
   
   for (const folder of directoriesToUpdate) {
-    if (!folder.includes(eventFolder)) continue
+    // Esto es para comprobar si es uno de los directorios principales de los videos en public/
+    // if (!folder.includes(eventFolder)) continue
     
     const fullPath = resolve(folder)
-    console.log(`- folder [${folder}] - :`, fullPath)
+    console.log(`\n- folder [${folder}] - :`, fullPath)
 
     let folderContent
     let hasError = false
     try {
-      console.log('readdir')
       folderContent = await readdir(fullPath)
     } catch {
       hasError = true
@@ -67,25 +62,12 @@ export async function updatePublicContent (filename: string | null) {
     }
 
     for (const item of folderContent) {
-      saveItemInPublicFolder(eventFolder, item)
+      console.log(`[${folder}]: ${item} | eventFolder: ${eventFolder}`)
+      saveItemInPublicFolder(item)
     }
   }
 }
 
-function saveItemInPublicFolder (folder: string, item: string) {
-  // let context
-  // try {
-  //   context = serverContext.getStore()
-  // } catch (err) {
-  //   console.error('Error obteniendo el contexto del servidor:', err)
-  // }
-
-  // if (!context) {
-  //   console.error('no context:', context)
-  //   return
-  // }
-
-  // context.streamsFolder.add(item)
-  console.log(`[${FS_ROUTES.PUBLIC}/${folder}]: ${item}`)
+function saveItemInPublicFolder (item: string) {
   serverContext.streamsFolder.add(item)
 }
