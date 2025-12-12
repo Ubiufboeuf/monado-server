@@ -1,5 +1,4 @@
 import { readdir, stat } from 'node:fs/promises'
-import { sleep } from '../lib/timeUtils'
 import { serverContext } from '../context'
 import { FS_ROUTES } from '../lib/constants'
 import { resolve } from 'node:path'
@@ -36,9 +35,6 @@ export async function updatePublicContent (filename: string | null) {
   }
 
   if (!stats || !stats.isDirectory()) return
-
-  // Esperar 1000s para evitar problemas de la caché del fs
-  await sleep(1000)
   
   for (const folder of directoriesToUpdate) {
     // Esto es para comprobar si es uno de los directorios principales de los videos en public/
