@@ -3,7 +3,6 @@ import { DEFAULT_PORT } from './src/lib/constants'
 import { createServer } from 'node:https'
 import { createServerOptions } from './src/serverConfig/createOptions'
 import { corsMiddleware } from './src/middlewares/cors'
-import { resolve } from 'node:path'
 import { streamsRouter } from './src/routes/streamsRouter'
 import { videoRouter } from './src/routes/videoRouter'
 import { videosRouter } from './src/routes/videosRouter'
@@ -31,8 +30,8 @@ app.use('/streams', streamsRouter)
 app.use('/video', videoRouter)
 app.use('/videos', videosRouter)
 
-app.get('/', (req, res) => {
-  res.sendFile(resolve('src/defaultGet.html'))
+app.get('/', (_, res) => {
+  res.json({ success: true })
 })
 
 watchPublicFolder()
