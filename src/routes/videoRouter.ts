@@ -43,6 +43,7 @@ videoRouter.get(ROUTES.VIDEO.ID, (req, res) => {
   }
 
   res.json({
-    ...params
+    success: true,
+    video
   })
 })
