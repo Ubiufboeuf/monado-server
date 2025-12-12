@@ -1,4 +1,4 @@
-import type { ROUTER_ERRORS, VIDEO_ERRORS } from './lib/constants'
+import type { ROUTER_ERRORS, VIDEO_ERRORS } from '../lib/constants'
 
 export type UserFacingMessageKey =
   `ROUTER_ERROR_${keyof typeof ROUTER_ERRORS}`
