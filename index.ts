@@ -1,5 +1,5 @@
 import express from 'express'
-import { DEFAULT_PORT } from './src/lib/constants'
+import { DEFAULT_PORT, ROUTES } from './src/lib/constants'
 import { createServer } from 'node:https'
 import { createServerOptions } from './src/serverConfig/createOptions'
 import { corsMiddleware } from './src/middlewares/cors'
@@ -26,11 +26,11 @@ const acceptedOrigins = [
 
 app.use(corsMiddleware({ acceptedOrigins }))
 
-app.use('/streams', streamsRouter)
-app.use('/video', videoRouter)
-app.use('/videos', videosRouter)
+app.use(ROUTES.STREAMS, streamsRouter)
+app.use(ROUTES.VIDEOS, videosRouter)
+app.use(ROUTES.VIDEO.BASE, videoRouter)
 
-app.get('/', (_, res) => {
+app.get(ROUTES.BASE, (_, res) => {
   res.json({ success: true })
 })
 

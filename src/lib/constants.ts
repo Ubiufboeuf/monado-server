@@ -19,9 +19,12 @@ export const ROUTES = {
   BASE: '/',
   STREAMS: '/streams',
   VIDEOS: '/videos',
-  VIDEO: '/video',
-  THUMBNAIL: '/video/thumbnail',
-  INFO: '/video/info'
+  VIDEO: {
+    BASE: '/video',
+    ID: '/:id',
+    THUMBNAIL: '/thumbnail',
+    INFO: '/info'
+  }
 }
 
 export const REQUEST_EXAMPLES = {

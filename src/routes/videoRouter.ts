@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { videoThumbnailRouter } from './videoThumbnailRouter'
-import { ROUTER_ERRORS, REQUEST_EXAMPLES, VIDEO_ERRORS } from '../lib/constants'
+import { ROUTER_ERRORS, REQUEST_EXAMPLES, VIDEO_ERRORS, ROUTES } from '../lib/constants'
 import { getMessage } from '../lib/displayMessages'
 import { getVideoById } from '../services/videoService'
 
@@ -15,7 +15,7 @@ videoRouter.get('/', (_, res) => {
   })
 })
 
-videoRouter.get('/:id', (req, res) => {
+videoRouter.get(ROUTES.VIDEO.ID, (req, res) => {
   const { params } = req
   const { id } = params
   
@@ -45,4 +45,4 @@ videoRouter.get('/:id', (req, res) => {
   })
 })
 
-videoRouter.use('/thumbnail', videoThumbnailRouter)
+videoRouter.use(ROUTES.VIDEO.THUMBNAIL, videoThumbnailRouter)
