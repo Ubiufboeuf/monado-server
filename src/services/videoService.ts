@@ -5,6 +5,8 @@ import { reloadPublicContent } from './publicContent'
 import { readFile } from 'node:fs/promises'
 import { FS_ROUTES } from '../lib/constants'
 import { isValidVideo } from '../lib/validations'
+import type { Cursor } from '../types/cursorTypes'
+import { createCursor } from './cursorService'
 
 const videos = new Map<string, Video>()
 
@@ -82,3 +84,31 @@ export function logVideos () {
   // videos.forEach((v) => v.id && ids.push(v.id))
   // console.log('ids:', new Set(ids))
 }
+
+export function getVideos (cursor: Cursor, limit: number) {
+  const all = [...videos.values()].sort((a, b) => {
+    if (!a.id || !b.id) return 0
+    return a.id.localeCompare(b.id)
+  })
+
+  let startIndex = 0
+  if (cursor.lastId) {
+    const idx = all.findIndex((v) => v.id === cursor.lastId)
+    if (idx !== -1) {
+      startIndex = idx + 1
+    }
+  }
+
+  const endIndex = startIndex + limit
+  const list = all.slice(startIndex, endIndex)
+  let nextCursor: Cursor | null = null
+
+  // Comprobar el tamaño de la lista.
+  // Si hay menos que lo que se pide, es porque no quedan más, entonces no debe haber otro cursor
+  if (list.length === limit) {
+    nextCursor = createCursor({ lastId: list.at(-1)?.id ?? null })
+  }
+
+  return { list, nextCursor }
+}
+
