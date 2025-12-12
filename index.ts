@@ -8,6 +8,7 @@ import { videoRouter } from './src/routes/videoRouter'
 import { videosRouter } from './src/routes/videosRouter'
 import { watchPublicFolder } from './src/services/watchFileSystem'
 import { loadVideos } from './src/services/videoService'
+import { requestLogs } from './src/middlewares/requestLogs'
 
 const app = express()
 const port = process.env.PORT ?? DEFAULT_PORT
@@ -25,6 +26,7 @@ const acceptedOrigins = [
   'https://monado.net'
 ]
 
+app.use(requestLogs())
 app.use(corsMiddleware({ acceptedOrigins }))
 
 app.use(ROUTES.STREAMS, streamsRouter)
