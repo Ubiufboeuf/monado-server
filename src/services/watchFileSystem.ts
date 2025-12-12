@@ -1,9 +1,9 @@
 import { watch } from 'node:fs/promises'
-import { resolve } from 'node:path'
 import { updatePublicContent } from './publicContent'
+import { FS_ROUTES } from '../lib/constants'
 
 export async function watchPublicFolder () {
-  const iterator = watch(resolve('public'), {
+  const iterator = watch(FS_ROUTES.PUBLIC.fullPath, {
     recursive: true,
     encoding: 'utf8'
   })
