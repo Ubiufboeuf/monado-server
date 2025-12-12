@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { videoThumbnailRouter } from './videoThumbnailRouter'
-import { ROUTER_ERRORS, REQUEST_EXAMPLES, VIDEO_ERRORS, ROUTES } from '../lib/constants'
+import { REQUEST_ERRORS, REQUEST_EXAMPLES, VIDEO_ERRORS, ROUTES } from '../lib/constants'
 import { getMessage } from '../lib/displayMessages'
 import { getVideoById } from '../services/videoService'
 
@@ -10,7 +10,7 @@ videoRouter.get('/', (_, res) => {
   res.status(400)
   res.json({
     success: false,
-    message: getMessage(ROUTER_ERRORS.MISSING_VIDEO_ID),
+    message: getMessage(REQUEST_ERRORS.MISSING_VIDEO_ID),
     example: REQUEST_EXAMPLES.VIDEO
   })
 })
@@ -25,7 +25,7 @@ videoRouter.get(ROUTES.VIDEO.ID, (req, res) => {
     res.status(500)
     res.json({
       success: false,
-      message: getMessage(ROUTER_ERRORS.LOGICALLY_INNACCESIBLE_ROUTE)
+      message: getMessage(REQUEST_ERRORS.LOGICALLY_INNACCESIBLE_ROUTE)
     })
     return
   }

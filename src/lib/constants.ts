@@ -3,9 +3,9 @@ import { createFsRoutes } from './fsUtils'
 
 export const DEFAULT_PORT = 4000
 
-export const ROUTER_ERRORS = {
-  MISSING_VIDEO_ID: 'ROUTER_ERROR_MISSING_VIDEO_ID',
-  LOGICALLY_INNACCESIBLE_ROUTE: 'ROUTER_ERROR_LOGICALLY_INNACCESIBLE_ROUTE'
+export const REQUEST_ERRORS = {
+  MISSING_VIDEO_ID: 'REQUEST_ERROR_MISSING_VIDEO_ID',
+  LOGICALLY_INNACCESIBLE_ROUTE: 'REQUEST_ERROR_LOGICALLY_INNACCESIBLE_ROUTE'
 } as const
 
 export const VIDEO_ERRORS = {
@@ -37,7 +37,7 @@ export const REQUEST_EXAMPLES = {
 } as const
 
 export const USER_FACING_MESSAGES: UserFacingMessages = {
-  ROUTER_ERROR_MISSING_VIDEO_ID: 'Falta especificar el ID del video',
-  ROUTER_ERROR_LOGICALLY_INNACCESIBLE_ROUTE: '¿Cómo llegaste hasta acá?',
+  REQUEST_ERROR_MISSING_VIDEO_ID: 'Falta especificar el ID del video',
+  REQUEST_ERROR_LOGICALLY_INNACCESIBLE_ROUTE: '¿Cómo llegaste hasta acá?',
   VIDEO_ERROR_NOT_FOUND: 'No se encontró el video con ID:'
 }
