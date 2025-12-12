@@ -3,13 +3,17 @@ import { serverContext } from '../context'
 import { FS_ROUTES } from '../lib/constants'
 import { resolve } from 'node:path'
 
-export async function updatePublicContent (filename: string | null) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function reloadPublicContent (filename: string | null) {
   // console.clear()
-  console.log('\n- - - UpdatePublicContent - - -')
+  console.log('\n[UpdatePublicContent]')
+  serverContext.streamsFolder.clear()
+  serverContext.assetsFolder.clear()
+  serverContext.infoFolder.clear()
 
-  const eventFolder = filename
-    ? `${FS_ROUTES.PUBLIC}/${filename.split('/')[0]}`
-    : null
+  // const eventFolder = filename
+  //   ? `${FS_ROUTES.PUBLIC}/${filename.split('/')[0]}`
+  //   : null
   
   const directoriesToUpdate = [
     FS_ROUTES.STREAMS.toString(),
@@ -41,7 +45,7 @@ export async function updatePublicContent (filename: string | null) {
     // if (!folder.includes(eventFolder)) continue
     
     const fullPath = resolve(folder)
-    console.log(`\n- folder [${folder}] - :`, fullPath)
+    // console.log(`\n- folder [${folder}] - :`, fullPath)
 
     let folderContent
     let hasError = false
@@ -58,12 +62,20 @@ export async function updatePublicContent (filename: string | null) {
     }
 
     for (const item of folderContent) {
-      console.log(`[${folder}]: ${item} | eventFolder: ${eventFolder}`)
-      saveItemInPublicFolder(item)
+      // console.log(`[${folder}]: ${item} | eventFolder: ${eventFolder}`)
+      saveItemInPublicFolder(folder, item)
     }
   }
 }
 
-function saveItemInPublicFolder (item: string) {
-  serverContext.streamsFolder.add(item)
+function saveItemInPublicFolder (folder: string, item: string) {
+  const folderInContext = Object.keys(serverContext)
+    .find((prop) =>
+      prop.endsWith('Folder') &&
+      folder.includes(prop.split('Folder')[0] ?? '')
+    )
+
+  if (!folderInContext || !(folderInContext in serverContext)) return
+
+  serverContext[folderInContext as keyof typeof serverContext].add(item)
 }
