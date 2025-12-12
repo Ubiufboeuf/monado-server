@@ -15,6 +15,13 @@ export const FS_ROUTES = createFsRoutes({
   public: 'public'
 })
 
+const ROUTES = {
+  VIDEOS: '/videos',
+  VIDEO: '/video',
+  ASSETS: '/assets',
+  INFO: '/info'
+}
+
 export const REQUEST_EXAMPLES = {
-  VIDEO: `${FS_ROUTES.STREAMS}/[ID]`
+  VIDEO: `${ROUTES.VIDEOS}/[ID]`
 }
