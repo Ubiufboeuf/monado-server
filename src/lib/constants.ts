@@ -6,7 +6,7 @@ export const DEFAULT_PORT = 4000
 export const ROUTER_ERRORS = {
   MISSING_VIDEO_ID: 'ROUTER_ERROR_MISSING_VIDEO_ID',
   LOGICALLY_INNACCESIBLE_ROUTE: 'ROUTER_ERROR_LOGICALLY_INNACCESIBLE_ROUTE'
-}
+} as const
 
 export const VIDEO_ERRORS = {
   NOT_FOUND: 'VIDEO_ERROR_NOT_FOUND'
@@ -29,12 +29,12 @@ export const ROUTES = {
     THUMBNAIL: '/thumbnail',
     INFO: '/info'
   }
-}
+} as const
 
 export const REQUEST_EXAMPLES = {
   VIDEO: `${ROUTES.VIDEO.BASE}/[ID]`,
   THUMBNAIL: `${ROUTES.VIDEO.BASE}${ROUTES.VIDEO.THUMBNAIL}/[ID]`
-}
+} as const
 
 export const USER_FACING_MESSAGES: UserFacingMessages = {
   ROUTER_ERROR_MISSING_VIDEO_ID: 'Falta especificar el ID del video',
