@@ -7,6 +7,7 @@ import { streamsRouter } from './src/routes/streamsRouter'
 import { videoRouter } from './src/routes/videoRouter'
 import { videosRouter } from './src/routes/videosRouter'
 import { watchPublicFolder } from './src/services/watchFileSystem'
+import { loadVideos } from './src/services/videoService'
 
 const app = express()
 const port = process.env.PORT ?? DEFAULT_PORT
@@ -34,4 +35,5 @@ app.get(ROUTES.BASE, (_, res) => {
   res.json({ success: true })
 })
 
+loadVideos()
 watchPublicFolder()
