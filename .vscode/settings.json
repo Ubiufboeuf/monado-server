@@ -6,6 +6,7 @@
     "utils",
     "file-system",
     "route",
-    "user-facing"
+    "user-facing",
+    "endpoint"
   ]
 }
