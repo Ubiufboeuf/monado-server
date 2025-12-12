@@ -1,3 +1,4 @@
+import type { UserFacingMessages } from '../types/messageTypes'
 import { createFsRoutes } from './fsUtils'
 
 export const DEFAULT_PORT = 4000
@@ -32,4 +33,10 @@ export const ROUTES = {
 
 export const REQUEST_EXAMPLES = {
   VIDEO: `${ROUTES.VIDEO}/[ID]`
+}
+
+export const USER_FACING_MESSAGES: UserFacingMessages = {
+  ROUTER_ERROR_MISSING_VIDEO_ID: 'Falta especificar el ID del video',
+  ROUTER_ERROR_LOGICALLY_INNACCESIBLE_ROUTE: '¿Cómo llegaste hasta acá?',
+  VIDEO_ERROR_NOT_FOUND: 'No se encontró el video con ID:'
 }
