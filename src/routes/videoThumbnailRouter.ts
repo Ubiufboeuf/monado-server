@@ -35,6 +35,7 @@ videoThumbnailRouter.get('/', async (req: Request<ThumbnailIDRequest>, res) => {
       success: false,
       message: getMessage(`${ERRORS.INTERNAL_FETCHING_THUMBNAILS}`, id)
     })
+    return
   }
 
   const thumbnails: string[] = []
@@ -73,6 +74,7 @@ videoThumbnailRouter.get('/:tid', async (req: Request<ThumbnailIDRequest>, res) 
       success: false,
       message: getMessage(`${ERRORS.INTERNAL_FETCHING_THUMBNAILS}`, id)
     })
+    return
   }
 
   const thumbnailsParts: string[][] = []
