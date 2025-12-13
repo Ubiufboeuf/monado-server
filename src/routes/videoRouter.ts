@@ -15,8 +15,6 @@ videoRouter.get('/', (_, res) => {
   })
 })
 
-videoRouter.use(ROUTES.VIDEO.THUMBNAIL, videoThumbnailRouter)
-
 videoRouter.get(ROUTES.VIDEO.ID, (req, res) => {
   const { params } = req
   const { id } = params
@@ -47,3 +45,5 @@ videoRouter.get(ROUTES.VIDEO.ID, (req, res) => {
     video
   })
 })
+
+videoRouter.use(ROUTES.VIDEO.THUMBNAIL, videoThumbnailRouter)

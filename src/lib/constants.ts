@@ -23,8 +23,8 @@ export const ROUTES = {
   VIDEO: {
     BASE: '/video',
     ID: '/:id',
-    THUMBNAIL: '/thumbnail',
-    INFO: '/info'
+    THUMBNAIL: '/:id/thumbnail',
+    INFO: '/:id/info'
   }
 } as const
 
