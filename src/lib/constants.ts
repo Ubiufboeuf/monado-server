@@ -8,7 +8,8 @@ export const ERRORS = {
   LOGICALLY_INNACCESIBLE_ROUTE: 'LOGICALLY_INNACCESIBLE_ROUTE',
   VIDEO_NOT_FOUND: 'VIDEO_NOT_FOUND',
   THUMBNAILS_NOT_FOUND: 'THUMBNAILS_NOT_FOUND',
-  INTERNAL_FETCHING_THUMBNAILS: 'INTERNAL_FETCHING_THUMBNAILS'
+  INTERNAL_FETCHING_THUMBNAILS: 'INTERNAL_FETCHING_THUMBNAILS',
+  THUMBNAIL_NOT_FOUND: 'THUMBNAIL_NOT_FOUND'
 } as const
 
 export const FS_ROUTES = createFsRoutes({
@@ -40,5 +41,6 @@ export const USER_FACING_MESSAGES: UserFacingMessages = {
   LOGICALLY_INNACCESIBLE_ROUTE: '¿Cómo llegaste hasta acá?',
   VIDEO_NOT_FOUND: 'No se encontró el video con ID:',
   THUMBNAILS_NOT_FOUND: 'No se encontraron las carátulas del video',
-  INTERNAL_FETCHING_THUMBNAILS: 'Error interno al conseguir las carátulas del video'
+  INTERNAL_FETCHING_THUMBNAILS: 'Error interno al conseguir las carátulas del video',
+  THUMBNAIL_NOT_FOUND: 'No se encontró la carátula'
 }
