@@ -14,7 +14,7 @@ interface ThumbnailIDRequest extends ThumbnailRequest {
   tid: string
 }
 
-videoThumbnailRouter.get('/', async (req: Request<ThumbnailIDRequest>, res) => {
+videoThumbnailRouter.get('/', async (req: Request<ThumbnailRequest>, res) => {
   const { id } = req.params
 
   if (!serverContext.assetsFolder.has(id)) {
