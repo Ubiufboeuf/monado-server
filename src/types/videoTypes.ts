@@ -5,7 +5,6 @@ export interface Video {
 	uploader_id: string | undefined
 	channel_follower_count: number | undefined
 	channel_is_verified: boolean | undefined
-	upload_date: string | undefined
 	duration: number | undefined
 	width: number | undefined
 	height: number | undefined
@@ -13,12 +12,12 @@ export interface Video {
 	aspect_ratio: string | undefined
 	audio: AudioMetadata | null
 	videos: ResolutionMetadata[]
+	thumbnails: Thumbnail[]
 	min_video_resolution: string | undefined
 	max_video_resolution: string | undefined
-	thumbnails: Thumbnail[]
 	min_thumbnail: string | undefined
 	max_thumbnail: string | undefined
-	release_timestamp: number
+	timestamp: number
 }
 
 export interface AudioMetadata {
