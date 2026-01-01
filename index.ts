@@ -9,6 +9,7 @@ import { videosRouter } from './src/routes/videosRouter'
 import { watchPublicFolder } from './src/services/watchFileSystem'
 import { loadVideos } from './src/services/videoService'
 import { requestLogs } from './src/middlewares/requestLogs'
+import { searchRouter } from './src/routes/searchRouter'
 
 const app = express()
 const port = process.env.PORT ?? DEFAULT_PORT
@@ -32,6 +33,7 @@ app.use(corsMiddleware({ acceptedOrigins }))
 app.use(ROUTES.STREAMS, streamsRouter)
 app.use(ROUTES.VIDEOS, videosRouter)
 app.use(ROUTES.VIDEO.BASE, videoRouter)
+app.use(ROUTES.SEARCH, searchRouter)
 
 app.get(ROUTES.BASE, (_, res) => {
   res.json({ success: true })

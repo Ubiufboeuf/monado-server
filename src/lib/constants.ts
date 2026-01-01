@@ -34,7 +34,8 @@ export const ROUTES = {
     POSTER: '/:id/poster',
     THUMBNAIL: '/:id/thumbnail',
     INFO: '/:id/info'
-  }
+  },
+  SEARCH: '/search'
 } as const
 
 export const REQUEST_EXAMPLES = {
