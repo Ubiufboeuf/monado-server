@@ -85,7 +85,7 @@ export function logVideos () {
   // console.log('ids:', new Set(ids))
 }
 
-export function getVideos (cursor: Cursor, limit: number) {
+export function getVideosByCursor (cursor: Cursor, limit: number) {
   const all = [...videos.values()].sort((a, b) => {
     if (!a.id || !b.id) return 0
     return a.id.localeCompare(b.id)

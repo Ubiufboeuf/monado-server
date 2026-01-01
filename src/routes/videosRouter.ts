@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { createCursor, cursorFromB64, cursorToB64 } from '../services/cursorService'
-import { getVideos } from '../services/videoService'
+import { getVideosByCursor } from '../services/videoService'
 
 export const videosRouter = Router()
 
@@ -18,7 +18,7 @@ videosRouter.get('/', (req, res) => {
     return
   }
 
-  const { list: videos, nextCursor } = getVideos(cursor, limit)
+  const { list: videos, nextCursor } = getVideosByCursor(cursor, limit)
 
   res.json({
     success: true,
