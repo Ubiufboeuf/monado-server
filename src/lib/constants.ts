@@ -13,7 +13,8 @@ export const ERRORS = {
   THUMBNAIL_NOT_FOUND: 'THUMBNAIL_NOT_FOUND',
   BAD_STREAMS_REQUEST: 'BAD_STREAMS_REQUEST',
   STREAM_NOT_FOUND: 'STREAM_NOT_FOUND',
-  INTERNAL_BAD_STREAM: 'INTERNAL_BAD_STREAM'
+  INTERNAL_BAD_STREAM: 'INTERNAL_BAD_STREAM',
+  INTERNAL_COULD_NOT_LOAD_VIDEOS: 'INTERNAL_COULD_NOT_LOAD_VIDEOS'
 } as const
 
 export const FS_ROUTES = createFsRoutes({
@@ -52,5 +53,6 @@ export const USER_FACING_MESSAGES: UserFacingMessages = {
   THUMBNAIL_NOT_FOUND: 'No se encontró la carátula',
   BAD_STREAMS_REQUEST: 'Falta especificar el ID del video',
   STREAM_NOT_FOUND: 'No se encontró el video',
-  INTERNAL_BAD_STREAM: 'Error interno al conseguir el stream del video'
+  INTERNAL_BAD_STREAM: 'Error interno al conseguir el stream del video',
+  INTERNAL_COULD_NOT_LOAD_VIDEOS: 'No se pudieron cargar los videos'
 }
