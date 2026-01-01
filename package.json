@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch index.ts",
+    "watch": "bun --watch index.ts",
+    "dev": "PORT=1234 bun --watch index.ts",
     "start": "PORT=1234 bun index.ts"
   },
   "devDependencies": {
