@@ -112,3 +112,7 @@ export function getVideosByCursor (cursor: Cursor, limit: number) {
   return { list, nextCursor }
 }
 
+export async function getAllVideos () {
+  if (!videos) await loadVideos()
+  return videos
+}
