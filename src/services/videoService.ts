@@ -99,15 +99,15 @@ export function getVideosByCursor (cursor: Cursor, limit: number) {
     }
   }
 
-  const endIndex = startIndex + limit
-  const list = all.slice(startIndex, endIndex)
-  let nextCursor: Cursor | null = null
+  const fetchLimit = limit + 1
+  const slice = all.slice(startIndex, startIndex + fetchLimit)
 
-  // Comprobar el tamaño de la lista.
-  // Si hay menos que lo que se pide, es porque no quedan más, entonces no debe haber otro cursor
-  if (list.length === limit) {
-    nextCursor = createCursor({ lastId: list.at(-1)?.id ?? null })
-  }
+  const hasMoreItems = slice.length > limit
+  const list = hasMoreItems ? slice.slice(0, limit) : slice
+  
+  const nextCursor = hasMoreItems
+    ? createCursor({ lastId: list.at(-1)?.id ?? null })
+    : null
 
   return { list, nextCursor }
 }

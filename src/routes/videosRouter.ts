@@ -6,8 +6,13 @@ export const videosRouter = Router()
 
 videosRouter.get('/', (req, res) => {
   const { query } = req
-  const { limit: limitStr, cursor: cursorStr } = query
+  const limitStr = query.limit
   const limit = Number(limitStr ?? 1)
+  let cursorStr = query.cursor
+
+  if (cursorStr === 'undefined' || cursorStr === 'null') {
+    cursorStr = undefined
+  }
 
   const cursor = cursorStr
     ? cursorFromB64(JSON.stringify(cursorStr))
