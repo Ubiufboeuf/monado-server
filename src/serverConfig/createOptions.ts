@@ -4,8 +4,8 @@ export function createServerOptions () {
   let key, cert
 
   try {
-    key = readFileSync('.cert/public.pem')
-    cert = readFileSync('.cert/key.pem')
+    key = readFileSync('.cert/key.pem')
+    cert = readFileSync('.cert/public.pem')
   } catch (err) {
     console.error('Error consiguiendo los certificados para https: ', err)
     return {}
