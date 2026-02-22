@@ -9,6 +9,7 @@
     "user-facing",
     "endpoint",
     "types",
-    "service"
+    "service",
+    "vault"
   ]
 }
