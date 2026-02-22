@@ -22,7 +22,7 @@ searchRouter.get('/:query', async (req, res) => {
 
   const results: Video[] = []
   
-  for (const [, v] of videos) {
+  for (const v of videos) {
     const t = v.title?.toLowerCase() ?? ''
 
     if (t.includes(query)) {

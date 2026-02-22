@@ -1,8 +1,8 @@
 import { Router, type Request } from 'express'
 import { getMessage } from '../lib/displayMessages'
 import { ERRORS, FS_ROUTES } from '../lib/constants'
-import { serverContext } from '../context'
 import { readdir } from 'node:fs/promises'
+import { vault } from '../models/Vault'
 
 export const videoThumbnailRouter = Router({ mergeParams: true })
 
@@ -17,7 +17,9 @@ interface ThumbnailIDRequest extends ThumbnailRequest {
 videoThumbnailRouter.get('/', async (req: Request<ThumbnailRequest>, res) => {
   const { id } = req.params
 
-  if (!serverContext.assetsFolder.has(id)) {
+  console.log('thumbnails', vault)
+
+  if (!vault.entries.has(id)) {
     res.status(404)
     res.json({
       success: false,
@@ -38,14 +40,20 @@ videoThumbnailRouter.get('/', async (req: Request<ThumbnailRequest>, res) => {
     return
   }
 
-  const thumbnails: string[] = []
+  const assets: [number, string][] = []
   for (const file of videoAssets) {
     const thumbnail = file.split('.')[0]
     if (!thumbnail) continue
 
-    thumbnails.push(`${thumbnail}p`)
+    assets.push([Number(thumbnail), `${thumbnail}p`])
   }
-  
+
+  console.log(id, videoAssets, assets)
+
+  const thumbnails = assets
+    .sort((a, b) => a[0] - b[0])
+    .map(([, t]) => t)
+
   res.json({
     success: true,
     id,
@@ -56,7 +64,7 @@ videoThumbnailRouter.get('/', async (req: Request<ThumbnailRequest>, res) => {
 videoThumbnailRouter.get('/:tid', async (req: Request<ThumbnailIDRequest>, res) => {
   const { id, tid } = req.params
   
-  if (!serverContext.assetsFolder.has(id)) {
+  if (!vault.entries.has(id)) {
     res.status(404)
     res.json({
       success: false,

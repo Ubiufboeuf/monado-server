@@ -6,19 +6,13 @@ import { corsMiddleware } from './src/middlewares/cors'
 import { streamsRouter } from './src/routes/streamsRouter'
 import { videoRouter } from './src/routes/videoRouter'
 import { videosRouter } from './src/routes/videosRouter'
-import { watchPublicFolder } from './src/services/watchFileSystem'
-import { loadVideos } from './src/services/videoService'
 import { requestLogs } from './src/middlewares/requestLogs'
 import { searchRouter } from './src/routes/searchRouter'
+import { syncVault, trackVault } from './src/services/vaultService'
 
 const app = express()
 const port = process.env.PORT ?? DEFAULT_PORT
 const options = createServerOptions()
-
-createServer(options, app)
-  .listen(port, () => {
-    console.log(`Servidor escuchando en el puerto [:${port}]`)
-  })
 
 const acceptedOrigins = [
   'https://192.168.1.100:4321',
@@ -39,5 +33,14 @@ app.get(ROUTES.BASE, (_, res) => {
   res.json({ success: true })
 })
 
-loadVideos()
-watchPublicFolder()
+console.log('\nSincronizando vaúl')
+await syncVault()
+console.log('Sincronización del vaúl terminada')
+
+console.log('\nEscuchando cambios en el vaúl para actualizaciones')
+trackVault()
+
+createServer(options, app)
+  .listen(port, () => {
+    console.log(`\n=== Servidor escuchando en el puerto [:${port}] ===`)
+  })

@@ -1,8 +1,8 @@
 import { Router, type Request } from 'express'
-import { serverContext } from '../context'
 import { getMessage } from '../lib/displayMessages'
 import { ERRORS, FS_ROUTES } from '../lib/constants'
 import { readdir } from 'node:fs/promises'
+import { vault } from '../models/Vault'
 
 // El poster es la carátula con mayor resolución del video
 export const videoPosterRouter = Router({ mergeParams: true })
@@ -14,7 +14,7 @@ interface PosterRequest {
 videoPosterRouter.get('/', async (req: Request<PosterRequest>, res) => {
   const { id } = req.params
   
-  if (!serverContext.assetsFolder.has(id)) {
+  if (!vault.entries.has(id)) {
     res.status(404)
     res.json({
       success: false,

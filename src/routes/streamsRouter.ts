@@ -1,9 +1,9 @@
 import { Router, type Handler } from 'express'
 import { getMessage } from '../lib/displayMessages'
 import { ERRORS, FS_ROUTES, REQUEST_EXAMPLES } from '../lib/constants'
-import { serverContext } from '../context'
 import { readdir } from 'node:fs/promises'
 import express from 'express'
+import { vault } from '../models/Vault'
 
 export const streamsRouter = Router()
 
@@ -22,7 +22,7 @@ const validateStream: Handler = async (req, res, next) => {
     return
   }
     
-  if (!serverContext.streamsFolder.has(id)) {
+  if (!vault.entries.has(id)) {
     res.status(404)
     res.json({
       success: false,
