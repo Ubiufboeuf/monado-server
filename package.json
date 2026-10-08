@@ -3,6 +3,10 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "start": "bun index.ts",
+    "dev": "bun --watch index.ts"
+  },
   "dependencies": {
     "@yt-dlx/media": "0.3.1",
     "@yt-dlx/streams": "0.1.1",
