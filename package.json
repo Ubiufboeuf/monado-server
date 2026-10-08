@@ -1,5 +1,5 @@
 {
-  "name": "monado-api",
+  "name": "monado-server",
   "module": "index.ts",
   "type": "module",
   "private": true,
