@@ -5,6 +5,9 @@
     "": {
       "name": "monado-api",
       "dependencies": {
+        "@yt-dlx/media": "0.3.1",
+        "@yt-dlx/streams": "0.1.1",
+        "@yt-dlx/yt": "0.4.1",
         "express": "5.2.1",
       },
       "devDependencies": {
@@ -104,6 +107,12 @@
     "@typescript-eslint/utils": ["@typescript-eslint/utils@8.71.1", "", { "dependencies": { "@eslint-community/eslint-utils": "^4.9.1", "@typescript-eslint/scope-manager": "8.71.1", "@typescript-eslint/types": "8.71.1", "@typescript-eslint/typescript-estree": "8.71.1" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0 || ^10.0.0", "typescript": ">=4.8.4 <6.1.0" } }, "sha512-CBjT6gfAz3DW2j9Q4moFnqt208Aq+506sVGXfpRcyAeqn0EpayL0mjdWoCO2t3RC7GewNrFxdeehuEaPg6DMzQ=="],
 
     "@typescript-eslint/visitor-keys": ["@typescript-eslint/visitor-keys@8.71.1", "", { "dependencies": { "@typescript-eslint/types": "8.71.1", "eslint-visitor-keys": "^5.0.0" } }, "sha512-0GxiUGqMU0qXJt58cBsiG3DP8lUmBaFo2vChtUX+CT7PnR3v/VGLLrzVP4K9r1lNiZXjHYefMBbPunplr09v6w=="],
+
+    "@yt-dlx/media": ["@yt-dlx/media@0.3.1", "", {}, "sha512-ZPm/Q3gzyEdhps01TD7wzq21/nQSQhONUCl6kHIyrglbSY/4qGI9fEi6Xo8d4K+wk02HmxaxcisK9xSWXOhUGQ=="],
+
+    "@yt-dlx/streams": ["@yt-dlx/streams@0.1.1", "", {}, "sha512-gS0LLFDhi51CfU+N/exMqKvO6S+wsGZ2h36teIQzmrdXpr/iIOiLKE5qIl2+g6WroDtiGXRngG22bs3BvvCIJA=="],
+
+    "@yt-dlx/yt": ["@yt-dlx/yt@0.4.1", "", {}, "sha512-Ak/j2b6S2CD5kDEBcQKdAJmglQGY65vVwIKYr5sU4Oxz+SDFtgfgVY2K0IFAdfsJ/TIP8CW/o76P9wu9oTDyYw=="],
 
     "accepts": ["accepts@2.0.0", "", { "dependencies": { "mime-types": "^3.0.0", "negotiator": "^1.0.0" } }, "sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng=="],
 
