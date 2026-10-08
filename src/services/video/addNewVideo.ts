@@ -37,5 +37,5 @@ export async function addNewVideo (url: string) {
     `./public/streams/${ytId}`
   )
 
-  console.log(result.outputManifest)
+  return result
 }
