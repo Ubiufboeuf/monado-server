@@ -1,6 +1,6 @@
-import { FFmpegAdapter, MediaEngine } from '@yt-dlx/media';
-import { MP4BoxAdapter, StreamsEngine } from '@yt-dlx/streams';
-import { YtDlpDownloader, YtEngine } from '@yt-dlx/yt';
+import { FFmpegAdapter, MediaEngine } from '@yt-dlx/media'
+import { MP4BoxAdapter, StreamsEngine } from '@yt-dlx/streams'
+import { YtDlpDownloader, YtEngine } from '@yt-dlx/yt'
 import { basename, extname } from 'node:path'
 
 export async function addNewVideo (url: string) {
