@@ -1,5 +1,7 @@
 {
   "conventionalCommits.scopes": [
-    "services"
+    "services",
+    "deps",
+    "config"
   ]
 }
