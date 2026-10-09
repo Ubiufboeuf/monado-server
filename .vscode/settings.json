@@ -3,6 +3,7 @@
     "services",
     "deps",
     "config",
-    "middleware"
+    "middleware",
+    "routers"
   ]
 }
