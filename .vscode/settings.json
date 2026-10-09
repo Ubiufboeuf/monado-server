@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "services",
     "deps",
-    "config"
+    "config",
+    "middleware"
   ]
 }
