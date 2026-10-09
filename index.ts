@@ -1,1 +1,15 @@
-console.log("Hello via Bun!")
+import { PORT } from '@/constants/api'
+import { videoRouter } from '@/routers/videoRouter'
+import express from 'express'
+
+async function main () {
+  const app = express()
+  app.disable('x-powered-by')
+  
+  app.use('/video', videoRouter)
+  app.use((_, res) => res.status(404).end())
+  
+  app.listen(PORT, () => console.log(`Escuchando en el puerto: ${PORT}`))
+}
+
+await main()
