@@ -1,6 +1,7 @@
 import { FFmpegAdapter, MediaEngine } from '@yt-dlx/media'
 import { MP4BoxAdapter, StreamsEngine } from '@yt-dlx/streams'
 import { YtDlpDownloader, YtEngine } from '@yt-dlx/yt'
+import { rm } from 'node:fs/promises'
 import { basename, extname } from 'node:path'
 
 export async function addNewVideo (url: string) {
@@ -36,6 +37,13 @@ export async function addNewVideo (url: string) {
     }),
     `./public/streams/${ytId}`
   )
+
+  // 5. Limpiar
+  try {
+    await rm(ytVideoResult.filePath)
+    await rm(ytAudioResult.filePath)
+    mediaResult.outputFiles.forEach(async (f) => await rm(f))
+  } catch {/* empty */}
 
   return result
 }
