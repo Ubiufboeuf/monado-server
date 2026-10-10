@@ -3,8 +3,18 @@ import { PORT } from '@/constants/api'
 import { videoRouter } from '@/routers/videoRouter'
 import { recomendationsRouter } from '@/routers/recomendationsRouter'
 import express from 'express'
+import { getErrorsDetails } from '@/errors'
+import { connectToDB } from '@/config/db'
 
 async function main () {
+  try {
+    await connectToDB()
+  } catch (err) {
+    const error = getErrorsDetails(err)
+    console.error(`${error.message} ${error.cause ? `(${error.cause})` : ''}`)
+    return
+  }
+  
   const app = express()
   app.disable('x-powered-by')
   app.use(corsMiddleware())
