@@ -4,6 +4,7 @@
     "deps",
     "config",
     "middleware",
-    "routers"
+    "routers",
+    "api"
   ]
 }
