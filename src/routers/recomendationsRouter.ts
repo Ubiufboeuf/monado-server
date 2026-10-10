@@ -1,7 +1,7 @@
 import { getRecomendationsById } from '@/services/video/recomendations'
 import { Router } from 'express'
 
-const recomendationsRouter = Router()
+export const recomendationsRouter = Router()
 
 recomendationsRouter.get('/:id', async (req, res) => {
   const { id } = req.params

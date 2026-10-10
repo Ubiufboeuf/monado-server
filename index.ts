@@ -1,6 +1,7 @@
 import { corsMiddleware } from '@/config/cors'
 import { PORT } from '@/constants/api'
 import { videoRouter } from '@/routers/videoRouter'
+import { recomendationsRouter } from '@/routers/recomendationsRouter'
 import express from 'express'
 
 async function main () {
