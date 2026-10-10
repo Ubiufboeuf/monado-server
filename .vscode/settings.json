@@ -5,6 +5,7 @@
     "config",
     "middleware",
     "routers",
-    "api"
+    "api",
+    "schemas"
   ]
 }
