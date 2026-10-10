@@ -6,6 +6,7 @@
     "middleware",
     "routers",
     "api",
-    "schemas"
+    "schemas",
+    "errors"
   ]
 }
